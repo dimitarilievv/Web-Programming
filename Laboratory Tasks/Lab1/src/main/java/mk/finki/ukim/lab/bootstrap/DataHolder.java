@@ -10,7 +10,6 @@ import java.util.List;
 @Component
 public class DataHolder {
     public static List<Event> events=new ArrayList<>();
-
     @PostConstruct
     void init(){
         events.add(new Event("Event1", "E1 description", 7.8));
