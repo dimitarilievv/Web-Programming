@@ -9,9 +9,11 @@
             width: 800px;
             margin: auto;
         }
+
         table {
-            width:100%;
+            width: 100%;
         }
+
         table, td, th {
             border: 1px solid black;
             padding: 3px 2px;
@@ -24,11 +26,7 @@
         <h1>Event Booking page - Booking confirmation </h1>
     </header>
     <table>
-        <tr>
-            <th colspan="2">
-                Your Booking Status
-            </th>
-        </tr>
+        <h2>Current booking:</h2>
         <tr>
             <td><b>Attendee Name </b></td>
             <td th:text="${booking.attendeeName}">[Attendee Name]</td>
@@ -45,6 +43,33 @@
             <td><b>Number of tickets</b></td>
             <td th:text="${booking.numberOfTickets}">[Number of tickets]</td>
         </tr>
+        <br/>
+    </table>
+    <br/>
+    <h2>All the previous bookings:</h2>
+    <div th:each="bookingg:${allbookings}">
+        <table>
+            <tr>
+                <td><b>Attendee Name </b></td>
+                <td th:text="${bookingg.attendeeName}">[Attendee Name]</td>
+            </tr>
+            <tr>
+                <td><b>Client IP Address</b></td>
+                <td th:text="${bookingg.attendeeAddress}">[Attendee IP Address]</td>
+            </tr>
+            <tr>
+                <td><b>Booking for Event</b></td>
+                <td th:text="${bookingg.eventName}">[Event Name]</td>
+            </tr>
+            <tr>
+                <td><b>Number of tickets</b></td>
+                <td th:text="${bookingg.numberOfTickets}">[Number of tickets]</td>
+            </tr>
+            <br/>
+        </table>
+
+    </div>
+
     </table>
 </section>
 </body>

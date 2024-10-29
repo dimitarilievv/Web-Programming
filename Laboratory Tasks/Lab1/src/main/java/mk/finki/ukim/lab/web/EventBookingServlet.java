@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import mk.finki.ukim.lab.model.EventBooking;
+import mk.finki.ukim.lab.repository.EventBookingRepository;
 import mk.finki.ukim.lab.service.EventBookingService;
 import org.thymeleaf.context.WebContext;
 import org.thymeleaf.spring6.SpringTemplateEngine;
@@ -13,14 +14,18 @@ import org.thymeleaf.web.IWebExchange;
 import org.thymeleaf.web.servlet.JakartaServletWebApplication;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "event-booking-servlet",urlPatterns = "/eventBooking")
 public class EventBookingServlet extends HttpServlet {
     private final EventBookingService eventBookingService;
+    private final EventBookingRepository repo;
     private final SpringTemplateEngine springTemplateEngine;
 
-    public EventBookingServlet(EventBookingService eventBookingService, SpringTemplateEngine springTemplateEngine) {
+    public EventBookingServlet(EventBookingService eventBookingService, EventBookingRepository repo, SpringTemplateEngine springTemplateEngine) {
         this.eventBookingService = eventBookingService;
+        this.repo = repo;
         this.springTemplateEngine = springTemplateEngine;
     }
 
@@ -42,7 +47,13 @@ public class EventBookingServlet extends HttpServlet {
         int numberOfTickets = Integer.parseInt(req.getParameter("numTickets"));
 
         EventBooking eventBooking=eventBookingService.placeBooking(eventName,attendeeName,attendeeAddress,numberOfTickets);
+        repo.bookings.add(eventBooking);
+
+        List<EventBooking> allbookings =eventBookingService.filterBookings(attendeeName);
+
         context.setVariable("booking",eventBooking);
+        context.setVariable("allbookings",allbookings);
+
         springTemplateEngine.process("bookingConfirmation.html", context, resp.getWriter());
     }
 }
