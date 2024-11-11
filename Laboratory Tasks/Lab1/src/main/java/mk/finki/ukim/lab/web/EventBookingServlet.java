@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "event-booking-servlet",urlPatterns = "/eventBooking")
+@WebServlet(name = "event-booking-servlet",urlPatterns = "/eventBookingServlet")
 public class EventBookingServlet extends HttpServlet {
     private final EventBookingService eventBookingService;
     private final EventBookingRepository repo;

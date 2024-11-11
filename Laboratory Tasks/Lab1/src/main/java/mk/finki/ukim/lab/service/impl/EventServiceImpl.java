@@ -1,11 +1,13 @@
 package mk.finki.ukim.lab.service.impl;
 
 import mk.finki.ukim.lab.model.Event;
+import mk.finki.ukim.lab.model.Location;
 import mk.finki.ukim.lab.repository.EventRepository;
 import mk.finki.ukim.lab.service.EventService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,4 +31,21 @@ public class EventServiceImpl implements EventService {
                         event.getPopularityScore() >= minRating)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public void deleteById(Long id) {
+        eventRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<Event> findById(Long id) {
+        return eventRepository.findById(id);
+    }
+
+    @Override
+    public Optional<Event> save(String name, String description, Double popularityScore, Location location) {
+        return eventRepository.save(name,description,popularityScore,location);
+    }
+
+
 }

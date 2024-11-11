@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Add Event</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Add/Edit Event</h2>
+    <form action="/events/add" method="POST" class="border p-4 bg-light rounded">
+        <input id="id" type="hidden" name="id" th:value="${event != null ? event.id : ''}">
+
+        <div class="form-group">
+            <label for="name">Event Name</label>
+            <input type="text"
+                   class="form-control"
+                   id="name"
+                   name="name"
+                   th:value="${event != null ? event.name : ''}"
+                   required
+                   placeholder="Enter event name">
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control"
+                      id="description"
+                      name="description"
+                      required
+                      placeholder="Enter event description"
+                      rows="3"
+                      th:text="${event != null ? event.description : ''}"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="popularityScore">Popularity Score</label>
+            <input type="number"
+                   class="form-control"
+                   id="popularityScore"
+                   name="popularityScore"
+                   step="0.1"
+                   min="0"
+                   th:value="${event != null ? event.popularityScore : ''}"
+                   th:attr="readonly=${event != null ? 'readonly' : null}"
+                   placeholder="Enter popularity score">
+        </div>
+
+        <div class="form-group">
+            <label for="location">Location</label>
+            <select id="location" name="locationId" class="form-control" required>
+                <option th:each="location : ${locations}"
+                        th:value="${location.id}"
+                        th:selected="${event != null && event.location.id == location.id}"
+                        th:text="${location.name}">
+                </option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-success">Save</button>
+        <a href="/events" class="btn btn-secondary">Back</a>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
