@@ -26,11 +26,11 @@ public class EventRepository {
         return DataHolder.events.stream().filter(i->i.getId().equals(id)).findFirst();
     }
     public Optional<Event> save(String name, String description,
-                                Double popularityScore, Location location){
+                                Double popularityScore, Location location,boolean hasIncreased,boolean hasDecreased){
         if(location==null){
             throw new IllegalArgumentException();
         }
-        Event event=new Event(name,description,popularityScore,location);
+        Event event=new Event(name,description,popularityScore,location,hasIncreased,hasDecreased);
         DataHolder.events.removeIf(i->i.getName().equals(event.getName()));
         DataHolder.events.add(event);
         return Optional.of(event);

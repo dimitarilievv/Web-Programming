@@ -41,7 +41,20 @@
                     </a>
                     <a th:href="@{'/events/delete/{id}' (id=${event.getId()})}" class="btn btn-danger btn-sm">
                         <i class="fa fa-trash"></i> Delete
+                    </a> <br/>
+
+                    <a th:href="@{/events/updatePopularity(eventId=${event.id}, action='increase')}"
+                       class="btn btn-success btn-sm mr-2"
+                       th:disabled="${event.hasIncreased}">
+                        Increase Popularity
                     </a>
+
+                    <a th:href="@{/events/updatePopularity(eventId=${event.id}, action='decrease')}"
+                       class="btn btn-danger btn-sm"
+                       th:disabled="${event.hasDecreased}">
+                        Decrease Popularity
+                    </a>
+
                 </div>
             </div>
         </div>

@@ -12,5 +12,5 @@ public interface EventService {
     public void deleteById(Long id);
     public Optional<Event> findById(Long id);
     public Optional<Event> save(String name, String description,
-                                Double popularityScore, Location location);
+                                Double popularityScore, Location location,boolean hasIncreased,boolean hasDecreased);
 }

@@ -5,11 +5,14 @@ import mk.finki.ukim.lab.model.Event;
 import mk.finki.ukim.lab.model.Location;
 import mk.finki.ukim.lab.service.EventService;
 import mk.finki.ukim.lab.service.LocationService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/events")
@@ -84,8 +87,28 @@ public class EventController {
         if (location == null) {
             return "redirect:/events?error=InvalidLocation";
         }
-        this.eventService.save(name, description, popularityScore, location);
+        this.eventService.save(name, description, popularityScore, location,false,false);
         return "redirect:/events";
     }
 
+    @GetMapping("/updatePopularity")
+    public String updatePopularity(@RequestParam Long eventId,
+                                   @RequestParam String action) {
+        Optional<Event> event = eventService.findById(eventId);
+
+        if (event.isPresent()) {
+            Event current=event.get();
+            if ("increase".equals(action) && !current.isHasIncreased()) {
+                current.setPopularityScore(current.getPopularityScore() + 1);
+                current.setHasIncreased(true);
+            } else if ("decrease".equals(action) &&  !current.isHasDecreased()) {
+                current.setPopularityScore(current.getPopularityScore() - 1);
+                current.setHasDecreased(true);
+            }
+            eventService.save(current.getName(),current.getDescription(),current.getPopularityScore(),current.getLocation(), current.isHasIncreased(), current.isHasDecreased()); //
+            return "redirect:/events";
+        }
+        return "redirect:/events?error=EventNotFound";
+
+    }
 }

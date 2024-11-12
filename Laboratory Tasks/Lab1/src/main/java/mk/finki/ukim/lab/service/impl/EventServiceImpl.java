@@ -42,9 +42,10 @@ public class EventServiceImpl implements EventService {
         return eventRepository.findById(id);
     }
 
+
     @Override
-    public Optional<Event> save(String name, String description, Double popularityScore, Location location) {
-        return eventRepository.save(name,description,popularityScore,location);
+    public Optional<Event> save(String name, String description, Double popularityScore, Location location,boolean hasIncreased,boolean hasDecreased) {
+        return eventRepository.save(name,description,popularityScore,location,hasIncreased,hasDecreased);
     }
 
 
