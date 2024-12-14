@@ -1,4 +1,4 @@
-package mk.ukim.finki.wp2024.repository;
+package mk.ukim.finki.wp2024.repository.impl;
 
 import mk.ukim.finki.wp2024.bootstrap.DataHolder;
 import mk.ukim.finki.wp2024.model.Category;

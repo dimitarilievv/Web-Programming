@@ -4,7 +4,9 @@ import mk.ukim.finki.wp2024.model.User;
 import mk.ukim.finki.wp2024.model.exceptions.InvalidArgumentsException;
 import mk.ukim.finki.wp2024.model.exceptions.InvalidUserCredentialsException;
 import mk.ukim.finki.wp2024.model.exceptions.PasswordsDoNotMatchException;
-import mk.ukim.finki.wp2024.repository.InMemoryUserRepository;
+import mk.ukim.finki.wp2024.model.exceptions.UsenameAlreadyExistsException;
+import mk.ukim.finki.wp2024.repository.impl.InMemoryUserRepository;
+import mk.ukim.finki.wp2024.repository.impl.jpa.UserRepository;
 import mk.ukim.finki.wp2024.service.AuthService;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +14,9 @@ import org.springframework.stereotype.Service;
 public class AuthServiceImpl implements AuthService {
 
     // Inject the InMemoryUserRepository
-    private final InMemoryUserRepository userRepository;
+    private final UserRepository userRepository;
 
-    public AuthServiceImpl(InMemoryUserRepository userRepository) {
+    public AuthServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -38,6 +40,10 @@ public class AuthServiceImpl implements AuthService {
         if (!password.equals(repeatPassword)) {
             throw new PasswordsDoNotMatchException();
         }
-        return userRepository.saveOrUpdate(new User(username, password, name, surname));
+        if(!this.userRepository.findByUsername(username).isEmpty()
+                || this.userRepository.findByUsername(username).isPresent()){
+            throw new UsenameAlreadyExistsException(username);
+        }
+        return userRepository.save(new User(username, password, name, surname));
     }
 }

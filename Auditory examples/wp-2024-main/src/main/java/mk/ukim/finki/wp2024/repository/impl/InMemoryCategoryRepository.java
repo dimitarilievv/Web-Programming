@@ -1,4 +1,4 @@
-package mk.ukim.finki.wp2024.repository;
+package mk.ukim.finki.wp2024.repository.impl;
 
 import mk.ukim.finki.wp2024.bootstrap.DataHolder;
 import mk.ukim.finki.wp2024.model.Category;
@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-// Repository for handling the in-memory storage of categories
 @Repository
 public class InMemoryCategoryRepository {
     public Optional<Category> save(Category category) {

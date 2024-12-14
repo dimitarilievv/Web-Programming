@@ -1,7 +1,8 @@
 package mk.ukim.finki.wp2024.service.impl;
 
 import mk.ukim.finki.wp2024.model.Category;
-import mk.ukim.finki.wp2024.repository.InMemoryCategoryRepository;
+import mk.ukim.finki.wp2024.repository.impl.InMemoryCategoryRepository;
+import mk.ukim.finki.wp2024.repository.impl.jpa.CategoryRepository;
 import mk.ukim.finki.wp2024.service.CategoryService;
 import org.springframework.stereotype.Service;
 
@@ -10,8 +11,9 @@ import java.util.Optional;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
-    private final InMemoryCategoryRepository categoryRepository;
-    public CategoryServiceImpl(InMemoryCategoryRepository categoryRepository) {
+    private final CategoryRepository categoryRepository;
+
+    public CategoryServiceImpl(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
 
@@ -27,7 +29,7 @@ public class CategoryServiceImpl implements CategoryService {
         }
 
         Category category = new Category(name, description);
-        return categoryRepository.save(category);
+        return Optional.of(categoryRepository.save(category));
     }
 
     @Override
@@ -37,12 +39,12 @@ public class CategoryServiceImpl implements CategoryService {
         }
 
         Category category = new Category(name, description);
-        return categoryRepository.save(category);
+        return Optional.of(categoryRepository.save(category));
     }
 
     @Override
     public void delete(String name) {
-        categoryRepository.delete(name);
+        categoryRepository.deleteByName(name);
     }
 
     @Override
@@ -52,7 +54,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> searchCategories(String text) {
-        return categoryRepository.search(text);
+        return categoryRepository.findAllByNameLike(text);
     }
 
     @Override

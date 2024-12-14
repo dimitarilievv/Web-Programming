@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+//@RestController
 @RequestMapping("/api/manufacturers")
 public class ManufacturerController {
     private final ManufacturerService manufacturerService;
@@ -36,7 +36,8 @@ public class ManufacturerController {
     }
     @DeleteMapping("/delete/{id}")
     public ResponseEntity deleteById(@PathVariable Long id){
-        if(this.manufacturerService.deleteById(id))
+        this.manufacturerService.deleteById(id);
+        if(this.manufacturerService.findById(id).isEmpty())
             return ResponseEntity.ok().build();
         return ResponseEntity.badRequest().build();
     }
