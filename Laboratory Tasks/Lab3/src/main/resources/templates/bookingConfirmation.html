@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Booking - Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            color: #444;
+            font-size: 24px;
+        }
+
+        h2 {
+            color: #555;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f8f8f8;
+            font-weight: bold;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .previous-bookings {
+            margin-top: 30px;
+        }
+
+        .previous-bookings table {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<section>
+    <header>
+        <h1>Event Booking - Confirmation</h1>
+    </header>
+
+    <h2>Current Booking:</h2>
+    <table>
+        <tr>
+            <th>Attendee Name</th>
+            <td th:text="${booking.attendeeName}">[Attendee Name]</td>
+        </tr>
+        <tr>
+            <th>Client IP Address</th>
+            <td th:text="${booking.attendeeAddress}">[Client IP Address]</td>
+        </tr>
+        <tr>
+            <th>Booking for Event</th>
+            <td th:text="${booking.eventName}">[Event Name]</td>
+        </tr>
+        <tr>
+            <th>Number of Tickets</th>
+            <td th:text="${booking.numberOfTickets}">[Number of Tickets]</td>
+        </tr>
+    </table>
+
+    <h2 class="previous-bookings">All Previous Bookings:</h2>
+    <div th:each="bookingg : ${allbookings}">
+        <table>
+            <tr>
+                <th>Attendee Name</th>
+                <td th:text="${bookingg.attendeeName}">[Attendee Name]</td>
+            </tr>
+            <tr>
+                <th>Client IP Address</th>
+                <td th:text="${bookingg.attendeeAddress}">[Client IP Address]</td>
+            </tr>
+            <tr>
+                <th>Booking for Event</th>
+                <td th:text="${bookingg.eventName}">[Event Name]</td>
+            </tr>
+            <tr>
+                <th>Number of Tickets</th>
+                <td th:text="${bookingg.numberOfTickets}">[Number of Tickets]</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="button-container">
+        <a href="/events" class="btn">Back to Events</a>
+    </div>
+</section>
+</body>
+</html>
