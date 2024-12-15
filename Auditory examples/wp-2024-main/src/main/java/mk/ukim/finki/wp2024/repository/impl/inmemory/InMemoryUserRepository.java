@@ -1,4 +1,4 @@
-package mk.ukim.finki.wp2024.repository.impl;
+package mk.ukim.finki.wp2024.repository.impl.inmemory;
 
 import mk.ukim.finki.wp2024.bootstrap.DataHolder;
 import mk.ukim.finki.wp2024.model.User;

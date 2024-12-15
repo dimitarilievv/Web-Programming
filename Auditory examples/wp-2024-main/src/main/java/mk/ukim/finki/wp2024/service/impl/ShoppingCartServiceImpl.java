@@ -8,8 +8,6 @@ import mk.ukim.finki.wp2024.model.exceptions.ProductAlreadyInShoppingCartExcepti
 import mk.ukim.finki.wp2024.model.exceptions.ProductNotFoundException;
 import mk.ukim.finki.wp2024.model.exceptions.ShoppingCartNotFoundException;
 import mk.ukim.finki.wp2024.model.exceptions.UserNotFoundException;
-import mk.ukim.finki.wp2024.repository.impl.InMemoryShoppingCartRepository;
-import mk.ukim.finki.wp2024.repository.impl.InMemoryUserRepository;
 import mk.ukim.finki.wp2024.repository.impl.jpa.ShoppingCartRepository;
 import mk.ukim.finki.wp2024.repository.impl.jpa.UserRepository;
 import mk.ukim.finki.wp2024.service.ProductService;

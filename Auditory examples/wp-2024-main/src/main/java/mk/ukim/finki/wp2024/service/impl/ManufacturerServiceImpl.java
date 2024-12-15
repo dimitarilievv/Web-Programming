@@ -1,7 +1,6 @@
 package mk.ukim.finki.wp2024.service.impl;
 
 import mk.ukim.finki.wp2024.model.Manufacturer;
-import mk.ukim.finki.wp2024.repository.impl.InMemoryManufacturerRepository;
 import mk.ukim.finki.wp2024.repository.impl.jpa.ManufacturerRepository;
 import mk.ukim.finki.wp2024.service.ManufacturerService;
 import org.springframework.stereotype.Service;

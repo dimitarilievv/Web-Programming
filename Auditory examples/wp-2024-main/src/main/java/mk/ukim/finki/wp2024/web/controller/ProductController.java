@@ -6,6 +6,7 @@ import mk.ukim.finki.wp2024.model.Product;
 import mk.ukim.finki.wp2024.service.CategoryService;
 import mk.ukim.finki.wp2024.service.ManufacturerService;
 import mk.ukim.finki.wp2024.service.ProductService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +35,8 @@ public class ProductController {
         }
         List<Product> products = this.productService.findAll();
         model.addAttribute("products", products);
-        return "products";
+        model.addAttribute("bodyContent","products");
+        return "master-template";
     }
 
     @PostMapping("/delete/{id}")
@@ -52,18 +54,21 @@ public class ProductController {
             model.addAttribute("manufacturers", manufacturers);
             model.addAttribute("categories", categories);
             model.addAttribute("product", product);
-            return "add-product";
+            model.addAttribute("bodyContent","add-product");
+            return "master-template";
         }
         return "redirect:/products?error=ProductNotFound";
     }
 
     @GetMapping("/add-form")
+    @PreAuthorize("hasRole('ADMIN')")
     public String addProductPage(Model model) {
         List<Manufacturer> manufacturers = this.manufacturerService.findAll();
         List<Category> categories = this.categoryService.listCategories();
         model.addAttribute("manufacturers", manufacturers);
         model.addAttribute("categories", categories);
-        return "add-product";
+        model.addAttribute("bodyContent","add-product");
+        return "master-template";
     }
 
     @PostMapping("/add")

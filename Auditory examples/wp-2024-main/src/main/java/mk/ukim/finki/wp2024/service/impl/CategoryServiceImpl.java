@@ -1,7 +1,6 @@
 package mk.ukim.finki.wp2024.service.impl;
 
 import mk.ukim.finki.wp2024.model.Category;
-import mk.ukim.finki.wp2024.repository.impl.InMemoryCategoryRepository;
 import mk.ukim.finki.wp2024.repository.impl.jpa.CategoryRepository;
 import mk.ukim.finki.wp2024.service.CategoryService;
 import org.springframework.stereotype.Service;

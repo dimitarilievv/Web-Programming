@@ -23,7 +23,8 @@ public class ManufacturerController {
             model.addAttribute("error", error);
         }
         model.addAttribute("manufacturers", this.manufacturerService.findAll());
-        return "manufacturers";
+        model.addAttribute("bodyContent","manufacturers");
+        return "master-template";
     }
 
 }

@@ -6,15 +6,10 @@ import mk.ukim.finki.wp2024.model.Manufacturer;
 import mk.ukim.finki.wp2024.model.Product;
 import mk.ukim.finki.wp2024.model.exceptions.CategoryNotFoundException;
 import mk.ukim.finki.wp2024.model.exceptions.ManufacturerNotFoundException;
-import mk.ukim.finki.wp2024.repository.impl.InMemoryCategoryRepository;
-import mk.ukim.finki.wp2024.repository.impl.InMemoryManufacturerRepository;
-import mk.ukim.finki.wp2024.repository.impl.InMemoryProductRepository;
 import mk.ukim.finki.wp2024.repository.impl.jpa.CategoryRepository;
 import mk.ukim.finki.wp2024.repository.impl.jpa.ManufacturerRepository;
 import mk.ukim.finki.wp2024.repository.impl.jpa.ProductRepository;
 import mk.ukim.finki.wp2024.service.ProductService;
-import org.springframework.data.domain.Page;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

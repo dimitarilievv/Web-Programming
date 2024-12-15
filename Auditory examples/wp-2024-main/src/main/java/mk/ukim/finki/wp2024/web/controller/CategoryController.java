@@ -22,6 +22,7 @@ public class CategoryController {
             model.addAttribute("error", error);
         }
         model.addAttribute("categories", this.categoryService.listCategories());
-        return "categories";
+        model.addAttribute("bodyContent","categories");
+        return "master-template";
     }
 }
