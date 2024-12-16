@@ -1,0 +1,66 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+    <section class="container mt-5">
+        <header class="text-center mb-4">
+            <h1 class="display-4">Event Booking - Confirmation</h1>
+        </header>
+
+        <div class="card shadow-sm mb-5">
+            <div class="card-header bg-primary text-white">
+                <h2>Current Booking</h2>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Attendee Name</th>
+                        <td th:text="${booking.attendeeName}">[Attendee Name]</td>
+                    </tr>
+                    <tr>
+                        <th>Client IP Address</th>
+                        <td th:text="${booking.attendeeAddress}">[Client IP Address]</td>
+                    </tr>
+                    <tr>
+                        <th>Booking for Event</th>
+                        <td th:text="${booking.eventName}">[Event Name]</td>
+                    </tr>
+                    <tr>
+                        <th>Number of Tickets</th>
+                        <td th:text="${booking.numberOfTickets}">[Number of Tickets]</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="card shadow-sm mb-5">
+            <div class="card-header bg-secondary text-white">
+                <h2>All Previous Bookings</h2>
+            </div>
+            <div class="card-body">
+                <div th:each="bookingg : ${allbookings}" class="mb-4">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Attendee Name</th>
+                            <td th:text="${bookingg.attendeeName}">[Attendee Name]</td>
+                        </tr>
+                        <tr>
+                            <th>Client IP Address</th>
+                            <td th:text="${bookingg.attendeeAddress}">[Client IP Address]</td>
+                        </tr>
+                        <tr>
+                            <th>Booking for Event</th>
+                            <td th:text="${bookingg.eventName}">[Event Name]</td>
+                        </tr>
+                        <tr>
+                            <th>Number of Tickets</th>
+                            <td th:text="${bookingg.numberOfTickets}">[Number of Tickets]</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <a href="/events" class="btn btn-primary">Back to Events</a>
+        </div>
+    </section>
+</th:block>
+
