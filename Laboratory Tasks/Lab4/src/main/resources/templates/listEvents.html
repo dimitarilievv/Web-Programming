@@ -28,7 +28,7 @@
                     <p class="card-text"><strong>Rating:</strong> <span th:text="${event.popularityScore}"></span></p>
                     <p class="card-text"><strong>Location:</strong> <span th:text="${event.location.name}"></span></p>
                     <div class="d-flex">
-                        <th:block sec:authorize="hasRole('ADMIN')">
+                        <th:block sec:authorize="hasAnyRole('ADMIN','MODERATOR')">
                             <a th:href="@{'/events/edit-form/' + ${event.id}}" class="btn btn-info btn-sm mr-2">
                                 <i class="fa fa-edit"></i> Edit
                             </a>

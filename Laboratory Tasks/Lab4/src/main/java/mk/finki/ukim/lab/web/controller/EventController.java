@@ -64,7 +64,7 @@ public class EventController {
             return "redirect:/events";
         } else return "redirect:/events?error=Event not found";
     }
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN','MODERATOR')")
     @GetMapping("/edit-form/{id}")
     public String editEvent(@PathVariable Long id, Model model) {
         if (this.eventService.findById(id).isPresent()) {

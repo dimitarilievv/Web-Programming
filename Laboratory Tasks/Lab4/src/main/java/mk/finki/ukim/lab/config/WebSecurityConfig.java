@@ -73,7 +73,7 @@ public class WebSecurityConfig {
         UserDetails user3 = User.builder()
                 .username("marko.m")
                 .password(passwordEncoder.encode("mm"))
-                .roles("USER")
+                .roles("MODERATOR")
                 .build();
         UserDetails admin = User.builder()
                 .username("admin")
